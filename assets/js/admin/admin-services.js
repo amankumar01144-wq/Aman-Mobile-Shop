@@ -1,4 +1,4 @@
-import { db } from "../../firebase/firebase-config.js";
+import { db } from "../../../firebase/firebase-config.js";
 import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 const servicesList = document.getElementById('services-list');
@@ -31,7 +31,11 @@ async function fetchServices() {
 
     } catch (error) {
         console.error("Error fetching services:", error);
-        servicesList.innerHTML = `<div class="text-center text-red-500 py-10">Error loading services. Please try again.</div>`;
+        servicesList.innerHTML = `<div class="text-center text-red-500 py-10">
+            <p class="font-bold">Error loading services</p>
+            <p class="text-sm text-gray-600 mt-2">${error.message}</p>
+            <p class="text-xs text-gray-400 mt-1">Check console for details.</p>
+        </div>`;
     }
 }
 

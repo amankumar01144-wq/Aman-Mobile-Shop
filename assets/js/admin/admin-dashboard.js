@@ -1,7 +1,7 @@
 import { db } from '../../../firebase/firebase-config.js';
 import { collection, query, where, getDocs, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 import { formatCurrency, showLoading, hideLoading } from '../utils.js';
-import { logoutUser } from '../../firebase/auth.js';
+import { logoutUser } from '../../../firebase/auth.js';
 
 const totalRevenueEl = document.getElementById('total-revenue');
 const totalOrdersEl = document.getElementById('total-orders');

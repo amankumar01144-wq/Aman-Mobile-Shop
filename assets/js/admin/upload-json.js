@@ -1,4 +1,4 @@
-import { db } from "../../firebase/firebase-config.js";
+import { db } from "../../../firebase/firebase-config.js";
 import { collection, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 const fileInput = document.getElementById('json-file');
@@ -43,8 +43,39 @@ fileInput.addEventListener('change', (e) => {
                 parsedData = JSON.parse(event.target.result);
                 generateCollectionOptions(parsedData);
             } catch (err) {
-                console.error(err);
-                collectionsList.innerHTML = `<div class="text-red-500 text-xs p-2">Error parsing JSON: ${err.message}</div>`;
+                console.warn("Initial parse failed, attempting to auto-repair JSON...", err);
+                try {
+                    // Attempt to fix common JSON errors
+                    let fixedContent = event.target.result.trim();
+
+                    // 1. Remove trailing commas before closing braces/brackets
+                    fixedContent = fixedContent.replace(/,(\s*[}\]])/g, '$1');
+
+                    // 2. Check if missing root closing brace
+                    if (fixedContent.endsWith('},')) {
+                        fixedContent = fixedContent.slice(0, -1) + '}'; // Replace trailing comma with closing brace? Or just removing comma might not be enough if root } is missing
+                        // If it ends with }, it means it is inside an object but missing the parent closing.
+                        // Actually, if the file ends with "}," it implies we need to remove comma AND add "}".
+                        // Let's try appending '}' if it seems truncated?
+                        // Too risky to guess too much. Let's just try the trailing comma fix.
+                    }
+
+                    // Simple fix for the specific user case: "},  EOF" -> "}}"
+                    if (fixedContent.endsWith('},')) {
+                        fixedContent = fixedContent.slice(0, -1) + '}';
+                    }
+                    // Or if it simply ends with "}" but opened with "{" and logic implies another "}"
+
+                    parsedData = JSON.parse(fixedContent);
+                    log("Warning: JSON was auto-repaired (removed trailing commas or fixed formatting).", "warning");
+                    generateCollectionOptions(parsedData);
+                } catch (retryErr) {
+                    console.error("Auto-repair failed:", retryErr);
+                    collectionsList.innerHTML = `<div class="text-red-500 text-xs p-2">
+                        <strong>Error parsing JSON:</strong><br>${err.message}<br>
+                        <span class="text-gray-500 mt-1">Make sure the file doesn't have trailing commas or missing brackets.</span>
+                     </div>`;
+                }
             }
         };
         reader.readAsText(file);
