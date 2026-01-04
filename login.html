@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Login - Aman Mobile Shop</title>
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body
+    class="bg-white h-screen flex flex-col items-center justify-center p-6 w-full max-w-md mx-auto relative overflow-hidden">
+
+    <!-- Decorative Circle -->
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-blue-50 rounded-full z-0 opacity-50"></div>
+    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-50 rounded-full z-0 opacity-50"></div>
+
+    <!-- Content -->
+    <div class="z-10 w-full">
+        <div class="text-center mb-10">
+            <div
+                class="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4 shadow-xl shadow-blue-200">
+                S
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900 mb-1">Aman Mobile Shop</h1>
+            <p class="text-sm text-gray-500">Welcome back!</p>
+        </div>
+
+        <form id="login-form" class="space-y-5">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2 ml-1">Email</label>
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="email" id="email" placeholder="john@example.com" required
+                        class="w-full bg-gray-50 text-gray-800 border-none rounded-xl py-3 pl-11 pr-4 focus:ring-2 focus:ring-blue-500 shadow-inner">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2 ml-1">Password</label>
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="password" id="password" placeholder="••••••••" required
+                        class="w-full bg-gray-50 text-gray-800 border-none rounded-xl py-3 pl-11 pr-4 focus:ring-2 focus:ring-blue-500 shadow-inner">
+                    <button type="button" id="toggle-password" class="absolute right-4 top-3.5 text-gray-400">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="text-right mt-2">
+                    <a href="#" class="text-xs text-blue-600 font-bold">Forgot Password?</a>
+                </div>
+            </div>
+
+            <button type="submit" id="login-btn"
+                class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-200 active:scale-95 transition-transform flex items-center justify-center gap-2">
+                Sign In
+            </button>
+        </form>
+
+        <div class="mt-8 text-center text-sm text-gray-600">
+            <p>Don't have an account? <a href="#" id="show-signup" class="text-blue-600 font-bold">Sign Up</a></p>
+        </div>
+
+        <!-- Social Login (Visual) -->
+        <div class="mt-8">
+            <div
+                class="flex items-center gap-4 py-4 before:h-px before:flex-1 before:bg-gray-200 after:h-px after:flex-1 after:bg-gray-200 text-gray-400 text-xs">
+                OR CONTINUE WITH
+            </div>
+            <div class="flex justify-center gap-4">
+                <button
+                    class="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-6 h-6" alt="Google">
+                </button>
+                <button
+                    class="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors">
+                    <i class="fab fa-facebook-f text-blue-600 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal / View (Hidden by default, simplistic toggle for now or separate page) -->
+    <!-- We will handle Signup toggle via JS or just redirect logic -->
+
+    <script type="module" src="assets/js/login-main.js"></script>
+    <script type="module" src="assets/js/utils.js"></script>
+</body>
+
+</html>

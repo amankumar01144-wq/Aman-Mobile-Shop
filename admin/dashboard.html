@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Admin Dashboard</title>
+    <meta name="theme-color" content="#1f2937">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Mobile Header -->
+    <header class="bg-gray-900 text-white p-4 sticky top-0 z-30 shadow-md flex justify-between items-center">
+        <div>
+            <h1 class="text-xl font-bold">ShopMax Admin</h1>
+            <p class="text-xs text-gray-400">Overview</p>
+        </div>
+        <button id="logout-btn"
+            class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-red-500 active:scale-95 transition-transform">
+            <i class="fas fa-power-off text-sm"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Navigation (Horizontal Scroll or Grid) -->
+    <nav
+        class="bg-white border-b border-gray-200 overflow-x-auto whitespace-nowrap p-2 sticky top-[60px] z-20 shadow-sm flex gap-2 no-scrollbar">
+        <a href="dashboard.html" class="px-4 py-2 bg-gray-900 text-white rounded-full text-xs font-bold shadow-md">
+            <i class="fas fa-rocket mr-1"></i> Dashboard
+        </a>
+        <a href="products.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-box mr-1"></i> Products
+        </a>
+        <a href="orders.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-shopping-bag mr-1"></i> Orders
+        </a>
+        <a href="settings.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-cog mr-1"></i> Settings
+        </a>
+        <a href="users.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-users mr-1"></i> Users
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="p-4 pb-20">
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mb-2">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="text-xs text-gray-500 font-bold uppercase">Revenue</div>
+                <div class="text-lg font-bold text-gray-900" id="total-revenue">₹...</div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 mb-2">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <div class="text-xs text-gray-500 font-bold uppercase">Orders</div>
+                <div class="text-lg font-bold text-gray-900" id="total-orders">...</div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 mb-2">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="text-xs text-gray-500 font-bold uppercase">Products</div>
+                <div class="text-lg font-bold text-gray-900" id="total-products">...</div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 mb-2">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="text-xs text-gray-500 font-bold uppercase">Users</div>
+                <div class="text-lg font-bold text-gray-900" id="total-users">...</div>
+            </div>
+        </div>
+
+        <!-- Recent Orders Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-bold text-gray-800">Recent Activity</h2>
+            <a href="orders.html" class="text-xs font-bold text-blue-600">View All</a>
+        </div>
+
+        <!-- Orders List (Mobile Cards) -->
+        <div class="space-y-3" id="recent-orders-list">
+            <!-- Skeleton -->
+            <div class="bg-white p-4 rounded-xl shadow-sm h-20 animate-pulse"></div>
+            <div class="bg-white p-4 rounded-xl shadow-sm h-20 animate-pulse"></div>
+        </div>
+
+    </main>
+
+    <script type="module" src="../assets/js/admin/admin-check.js"></script>
+    <script type="module" src="../assets/js/admin/admin-dashboard.js"></script>
+</body>
+
+</html>

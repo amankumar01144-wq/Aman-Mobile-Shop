@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Help & Support - Aman Mobile Shop</title>
+    <meta name="description"
+        content="Contact Aman Mobile Shop support. Get help with your orders, repairs, and account. 24/7 customer service.">
+    <meta name="keywords" content="customer support, mobile shop contact, repair help, aman mobile shop help">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 h-screen flex flex-col overflow-hidden w-full max-w-md mx-auto relative shadow-2xl">
+
+    <header class="bg-white px-4 pt-safe pb-4 shadow-sm z-10 flex items-center gap-3">
+        <a href="profile.html" class="text-gray-800"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="text-xl font-bold text-gray-800">Help & Support</h1>
+    </header>
+
+    <main class="flex-1 overflow-y-auto scrollbar-hide p-4 space-y-4">
+
+        <!-- Contact Cards -->
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+            <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-600">
+                <i class="fab fa-whatsapp text-xl"></i>
+            </div>
+            <div>
+                <h3 class="font-bold text-gray-800 text-sm">WhatsApp Chat</h3>
+                <p class="text-xs text-gray-400">Average wait time: 5 mins</p>
+            </div>
+            <a href="https://wa.me/919876543210" target="_blank" id="support-whatsapp"
+                class="ml-auto bg-green-500 text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-green-600">Chat</a>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+            <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+                <i class="fas fa-phone-alt text-xl"></i>
+            </div>
+            <div>
+                <h3 class="font-bold text-gray-800 text-sm">Call Support</h3>
+                <p class="text-xs text-gray-400">Mon-Sat, 9am - 6pm</p>
+            </div>
+            <a href="tel:+919876543210" id="support-phone"
+                class="ml-auto bg-blue-500 text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-blue-600">Call</a>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
+            <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center text-red-600">
+                <i class="fas fa-envelope text-xl"></i>
+            </div>
+            <div>
+                <h3 class="font-bold text-gray-800 text-sm">Email Support</h3>
+                <p class="text-xs text-gray-400">Get replay within 24hrs</p>
+            </div>
+            <a href="mailto:support@shopmax.com" id="support-email"
+                class="ml-auto bg-red-500 text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-red-600">Email</a>
+        </div>
+
+        <!-- FAQs -->
+        <h3 class="font-bold text-gray-800 mt-6 mb-2 ml-1">Frequently Asked Questions</h3>
+        <div class="space-y-2">
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 open:bg-blue-50/30">
+                <summary
+                    class="p-4 font-bold text-sm text-gray-700 cursor-pointer list-none flex justify-between items-center outline-none">
+                    How do I track my order?
+                    <i class="fas fa-chevron-down text-xs text-gray-400"></i>
+                </summary>
+                <div class="px-4 pb-4 text-xs text-gray-500 leading-relaxed">
+                    Go to the "Orders" tab in the bottom navigation. Select your order to see standard tracking details.
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 open:bg-blue-50/30">
+                <summary
+                    class="p-4 font-bold text-sm text-gray-700 cursor-pointer list-none flex justify-between items-center outline-none">
+                    What is the return policy?
+                    <i class="fas fa-chevron-down text-xs text-gray-400"></i>
+                </summary>
+                <div class="px-4 pb-4 text-xs text-gray-500 leading-relaxed">
+                    We offer a 7-day return policy for all unused items with original tags. Contact support to initiate
+                    a return.
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 open:bg-blue-50/30">
+                <summary
+                    class="p-4 font-bold text-sm text-gray-700 cursor-pointer list-none flex justify-between items-center outline-none">
+                    Cash on Delivery available?
+                    <i class="fas fa-chevron-down text-xs text-gray-400"></i>
+                </summary>
+                <div class="px-4 pb-4 text-xs text-gray-500 leading-relaxed">
+                    Yes, COD is available for most locations. You can choose this option at checkout.
+                </div>
+            </details>
+        </div>
+
+    </main>
+    <script type="module" src="assets/js/help-support-main.js"></script>
+</body>
+
+</html>

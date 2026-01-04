@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Product Details - Aman Mobile Shop</title>
+    <meta name="description"
+        content="View product details, price, and features at Aman Mobile Shop. Best deals on smartphones and accessories.">
+    <meta name="keywords" content="mobile details, product price, buy smartphone, aman mobile shop">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="Product Details - Aman Mobile Shop">
+    <meta property="og:description" content="Check out this amazing product at Aman Mobile Shop.">
+    <meta property="og:image" content="assets/icons/icon-512.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-white h-screen flex flex-col overflow-hidden w-full max-w-md mx-auto relative shadow-2xl">
+
+    <!-- Header (Floating) -->
+    <header
+        class="absolute top-0 left-0 w-full z-50 px-4 pt-safe mt-2 flex justify-between items-center pointer-events-none">
+        <button onclick="history.back()"
+            class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center text-gray-700 pointer-events-auto active:scale-95 transition-transform z-50">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="flex gap-3 pointer-events-auto">
+            <button
+                class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center text-gray-700 active:scale-95 transition-transform">
+                <i class="fas fa-share-alt"></i>
+            </button>
+            <a href="cart.html"
+                class="w-10 h-10 bg-white/90 backdrop-blur rounded-full shadow-md flex items-center justify-center text-gray-700 active:scale-95 transition-transform relative">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="nav-cart-count"
+                    class="absolute -top-1 -right-1 bg-red-500 border border-white min-w-[1rem] h-4 flex items-center justify-center text-[10px] font-bold rounded-full hidden px-0.5"></span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto scrollbar-hide pb-32 bg-gray-50" id="product-container">
+        <!-- Skeleton Template -->
+        <div class="animate-pulse bg-white">
+            <div class="h-[400px] bg-gray-200 w-full"></div>
+            <div class="p-4 space-y-4">
+                <div class="h-6 bg-gray-200 rounded w-3/4"></div>
+                <div class="h-4 bg-gray-200 rounded w-1/4"></div>
+                <div class="h-20 bg-gray-200 rounded w-full"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sticky Footer Action Bar -->
+    <div class="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-100 p-4 pb-safe shadow-up z-40 flex gap-3">
+        <!-- Qty Stepper (Hidden by default, shown via JS if needed, or just keep simple add button) -->
+        <div class="hidden items-center border border-gray-300 rounded-xl px-2" id="qty-control">
+            <button onclick="decrementQty()" class="w-8 h-10 text-gray-600">-</button>
+            <input type="number" id="qty-input" value="1" min="1" max="10"
+                class="w-8 text-center border-none focus:outline-none font-bold" readonly>
+            <button onclick="incrementQty()" class="w-8 h-10 text-gray-600">+</button>
+        </div>
+
+        <button id="add-to-cart-btn"
+            class="flex-1 bg-blue-50 text-blue-600 font-bold py-3.5 rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2">
+            <i class="fas fa-shopping-cart"></i> Add
+        </button>
+        <button id="buy-now-btn"
+            class="flex-1 bg-blue-600 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-200 active:scale-95 transition-transform">
+            Buy Now
+        </button>
+    </div>
+
+    <script type="module" src="assets/js/product-main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>

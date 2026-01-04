@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Manage Orders</title>
+    <meta name="theme-color" content="#1f2937">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <header class="bg-gray-900 text-white p-4 sticky top-0 z-30 shadow-md flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <a href="dashboard.html" class="text-white"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="text-xl font-bold">Orders</h1>
+        </div>
+    </header>
+
+    <nav
+        class="bg-white border-b border-gray-200 overflow-x-auto whitespace-nowrap p-2 sticky top-[60px] z-20 shadow-sm flex gap-2 no-scrollbar">
+        <a href="dashboard.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-rocket mr-1"></i> Dashboard
+        </a>
+        <a href="products.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-box mr-1"></i> Products
+        </a>
+        <a href="orders.html" class="px-4 py-2 bg-gray-900 text-white rounded-full text-xs font-bold shadow-md">
+            <i class="fas fa-shopping-bag mr-1"></i> Orders
+        </a>
+        <a href="settings.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-cog mr-1"></i> Settings
+        </a>
+    </nav>
+
+    <main class="p-4 pb-20">
+        <!-- Filter Bar -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-bold text-gray-800">All Orders</h2>
+            <select id="status-filter" onchange="filterOrders(this.value)"
+                class="bg-white border border-gray-200 text-gray-700 text-xs font-bold py-2 px-3 rounded-lg focus:outline-none shadow-sm">
+                <option value="all">All</option>
+                <option value="pending">Pending</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="service_orders">Service Orders</option>
+            </select>
+        </div>
+
+        <div id="admin-orders-list" class="space-y-4">
+            <!-- Loader -->
+            <div class="bg-white p-4 rounded-xl shadow-sm h-32 animate-pulse"></div>
+        </div>
+    </main>
+
+    <!-- Status Sheet (Hidden) -->
+    <div id="status-sheet" class="fixed inset-0 bg-black/50 z-50 hidden flex items-end justify-center">
+        <div class="bg-white w-full max-w-md rounded-t-2xl p-6 relative">
+            <button onclick="closeStatusSheet()" class="absolute top-4 right-4 text-gray-400"><i
+                    class="fas fa-times"></i></button>
+            <h3 class="font-bold text-gray-800 text-lg mb-4">Update Status</h3>
+            <input type="hidden" id="status-order-id">
+
+            <div class="space-y-2">
+                <button onclick="updateStatus('Pending')"
+                    class="w-full text-left px-4 py-3 rounded-xl bg-yellow-50 text-yellow-700 font-bold border border-yellow-200">Pending</button>
+                <button onclick="updateStatus('Shipped')"
+                    class="w-full text-left px-4 py-3 rounded-xl bg-blue-50 text-blue-700 font-bold border border-blue-200">Shipped</button>
+                <button onclick="updateStatus('Delivered')"
+                    class="w-full text-left px-4 py-3 rounded-xl bg-green-50 text-green-700 font-bold border border-green-200">Delivered</button>
+                <button onclick="updateStatus('Cancelled')"
+                    class="w-full text-left px-4 py-3 rounded-xl bg-red-50 text-red-700 font-bold border border-red-200">Cancelled</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800"><i
+                    class="fas fa-times text-xl"></i></button>
+            <h3 class="font-bold text-gray-800 text-lg mb-4">Order Details</h3>
+
+            <div id="modal-content" class="space-y-4">
+                <!-- Content injected via JS -->
+            </div>
+
+            <div class="mt-6 flex gap-3">
+                <button onclick="closeDetailModal()"
+                    class="flex-1 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/admin/admin-check.js"></script>
+    <script type="module" src="../assets/js/admin/admin-orders.js"></script>
+</body>
+
+</html>

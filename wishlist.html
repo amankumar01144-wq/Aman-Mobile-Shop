@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>My Wishlist</title>
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 h-screen flex flex-col overflow-hidden w-full max-w-md mx-auto relative shadow-2xl">
+
+    <!-- Header -->
+    <header class="bg-white px-4 pt-safe pb-4 shadow-sm z-10 flex items-center gap-3">
+        <a href="profile.html" class="text-gray-800"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="text-xl font-bold text-gray-800">My Wishlist</h1>
+    </header>
+
+    <!-- Content -->
+    <main class="flex-1 overflow-y-auto scrollbar-hide p-4" id="wishlist-container">
+        <!-- Empty State -->
+        <div class="flex flex-col items-center justify-center h-full text-center py-20 hidden" id="empty-state">
+            <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-heart text-red-400 text-2xl"></i>
+            </div>
+            <h3 class="font-bold text-gray-800 mb-2">Your wishlist is empty</h3>
+            <p class="text-gray-500 text-sm mb-6">Save items you love here.</p>
+            <a href="explore.html"
+                class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-md">Explore Now</a>
+        </div>
+
+        <!-- List -->
+        <div class="grid grid-cols-2 gap-3" id="wishlist-grid">
+            <!-- Skeleton -->
+            <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 h-48 animate-pulse"></div>
+            <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 h-48 animate-pulse"></div>
+        </div>
+    </main>
+
+    <script type="module" src="assets/js/wishlist-main.js"></script>
+</body>
+
+</html>

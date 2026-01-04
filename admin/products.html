@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Manage Products</title>
+    <meta name="theme-color" content="#1f2937">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Mobile Header -->
+    <header class="bg-gray-900 text-white p-4 sticky top-0 z-30 shadow-md flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <a href="dashboard.html" class="text-white"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="text-xl font-bold">Products</h1>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Strip -->
+    <nav
+        class="bg-white border-b border-gray-200 overflow-x-auto whitespace-nowrap p-2 sticky top-[60px] z-20 shadow-sm flex gap-2 no-scrollbar">
+        <a href="dashboard.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-rocket mr-1"></i> Dashboard
+        </a>
+        <a href="products.html" class="px-4 py-2 bg-gray-900 text-white rounded-full text-xs font-bold shadow-md">
+            <i class="fas fa-box mr-1"></i> Products
+        </a>
+        <a href="orders.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-shopping-bag mr-1"></i> Orders
+        </a>
+        <a href="settings.html"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-xs font-bold hover:bg-gray-200">
+            <i class="fas fa-cog mr-1"></i> Settings
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="p-4 pb-20">
+        <!-- Products List -->
+        <div id="products-list" class="space-y-4">
+            <!-- Loader -->
+            <div class="bg-white p-4 rounded-xl shadow-sm h-32 animate-pulse"></div>
+            <div class="bg-white p-4 rounded-xl shadow-sm h-32 animate-pulse"></div>
+        </div>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button onclick="openAddModal()"
+        class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg shadow-blue-300 flex items-center justify-center text-2xl active:scale-95 transition-transform z-40">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Add/Edit Modal (Full Screen on Mobile) -->
+    <div id="product-modal"
+        class="fixed inset-0 bg-white z-50 transform translate-y-full transition-transform duration-300 flex flex-col">
+        <div class="bg-white border-b border-gray-100 p-4 flex justify-between items-center">
+            <h2 class="text-lg font-bold text-gray-800" id="modal-title">Add New Product</h2>
+            <button onclick="closeModal()"
+                class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4">
+            <form id="product-form" class="space-y-4">
+                <input type="hidden" id="product-id">
+
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase">Product Name</label>
+                    <input type="text" id="p-name" required
+                        class="w-full border-b border-gray-300 py-2 focus:border-blue-600 outline-none font-medium">
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="flex-1">
+                        <label class="text-xs font-bold text-gray-500 uppercase">Price (₹)</label>
+                        <input type="number" id="p-price" required
+                            class="w-full border-b border-gray-300 py-2 focus:border-blue-600 outline-none font-medium">
+                    </div>
+                    <div class="flex-1">
+                        <label class="text-xs font-bold text-gray-500 uppercase">MRP (₹)</label>
+                        <input type="number" id="p-mrp"
+                            class="w-full border-b border-gray-300 py-2 focus:border-blue-600 outline-none font-medium">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase">Category</label>
+                    <select id="p-category"
+                        class="w-full border-b border-gray-300 py-2 focus:border-blue-600 outline-none font-medium bg-transparent">
+                        <option value="Electronics">Electronics</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Home">Home</option>
+                        <option value="Service">Service</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase">Image URL</label>
+                    <input type="url" id="p-image" placeholder="https://..."
+                        class="w-full border-b border-gray-300 py-2 focus:border-blue-600 outline-none font-medium">
+                </div>
+
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase">Description</label>
+                    <textarea id="p-desc" rows="3"
+                        class="w-full border-b border-gray-300 py-2 focus:border-blue-600 outline-none font-medium"></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-200">Save
+                        Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/admin/admin-check.js"></script>
+    <script type="module" src="../assets/js/admin/admin-products.js"></script>
+</body>
+
+</html>

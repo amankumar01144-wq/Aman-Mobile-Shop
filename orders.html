@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Orders - Aman Mobile Shop</title>
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 h-screen flex flex-col overflow-hidden w-full max-w-md mx-auto relative shadow-2xl">
+
+    <!-- Header -->
+    <header class="bg-white px-4 pt-safe pb-4 shadow-sm z-10 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <a href="index.html" class="text-gray-800"><i class="fas fa-arrow-left"></i></a>
+            <h1 class="text-xl font-bold text-gray-800">My Orders</h1>
+        </div>
+        <a href="wishlist.html" class="text-gray-800"><i class="fas fa-heart"></i></a>
+    </header>
+
+    <!-- Orders List -->
+    <main class="flex-1 overflow-y-auto scrollbar-hide pb-24 px-4 py-4" id="orders-container">
+        <!-- Skeleton -->
+        <div class="space-y-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm h-32 animate-pulse"></div>
+            <div class="bg-white p-4 rounded-xl shadow-sm h-32 animate-pulse"></div>
+        </div>
+    </main>
+
+    <!-- BOTTOM NAVIGATION (Fixed) -->
+    <nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full max-w-md pb-safe z-50 shadow-up">
+        <div class="flex justify-around items-center h-16">
+            <a href="index.html"
+                class="nav-item flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-home text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="#"
+                class="nav-item flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-compass text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Explore</span>
+            </a>
+            <div class="relative w-full flex justify-center h-full items-end pb-3">
+                <a href="cart.html"
+                    class="absolute -top-6 bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-transform active:scale-95 border-4 border-gray-100">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="nav-cart-count"
+                        class="absolute top-0 right-0 bg-red-500 border border-white min-w-[1.2rem] h-[1.2rem] flex items-center justify-center text-[10px] font-bold rounded-full hidden px-1 translate-x-1 -translate-y-1 shadow-sm"></span>
+                </a>
+                <span class="text-[10px] font-medium text-gray-400 mt-8">Cart</span>
+            </div>
+            <a href="orders.html"
+                class="nav-item active flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-box text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Orders</span>
+            </a>
+            <a href="profile.html"
+                class="nav-item flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-user text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <script type="module" src="assets/js/orders-main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>

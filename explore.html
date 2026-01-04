@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Explore - Aman Mobile Shop</title>
+    <meta name="description"
+        content="Explore our wide range of mobile phones, accessories, and gadgets. Find the best deals at Aman Mobile Shop.">
+    <meta name="keywords" content="explore products, new gadgets, mobile phones, accessories, buy online">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#2563eb', secondary: '#475569' },
+                    boxShadow: { 'up': '0 -4px 6px -1px rgba(0, 0, 0, 0.1)' }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 h-screen flex flex-col overflow-hidden w-full max-w-md mx-auto relative shadow-2xl">
+
+    <!-- Header (Search Focused) -->
+    <header class="bg-white px-4 pt-safe pb-3 sticky top-0 z-50 shadow-sm shrink-0">
+        <h1 class="text-xl font-bold text-gray-800 mb-3">Explore</h1>
+        <div class="relative">
+            <input type="text" id="explore-search" placeholder="Search for items, brands..."
+                class="w-full bg-gray-100 text-gray-800 border-none rounded-xl py-3 pl-11 pr-4 text-sm focus:ring-2 focus:ring-blue-100 transition-all shadow-inner">
+            <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto scrollbar-hide pb-24 p-4">
+
+        <!-- Shop by Category -->
+        <section class="mb-6">
+            <h2 class="font-bold text-gray-800 mb-3">Shop by Category</h2>
+            <div class="grid grid-cols-3 gap-3">
+                <button onclick="filterExplore('electronics')"
+                    class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-2 active:scale-95 transition-transform">
+                    <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-gray-600">Electronics</span>
+                </button>
+                <button onclick="filterExplore('fashion')"
+                    class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-2 active:scale-95 transition-transform">
+                    <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-gray-600">Fashion</span>
+                </button>
+                <button onclick="filterExplore('home')"
+                    class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-2 active:scale-95 transition-transform">
+                    <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-gray-600">Home</span>
+                </button>
+                <button onclick="filterExplore('services')"
+                    class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-2 active:scale-95 transition-transform">
+                    <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-gray-600">Services</span>
+                </button>
+                <button onclick="filterExplore('all')"
+                    class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center gap-2 active:scale-95 transition-transform col-span-2">
+                    <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-600">
+                        <i class="fas fa-th-large"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-gray-600">View All</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Search Results / All Products -->
+        <section>
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="font-bold text-gray-800" id="results-title">Discover</h2>
+                <span class="text-[10px] text-gray-400" id="results-count">Loading...</span>
+            </div>
+
+            <div id="explore-results" class="grid grid-cols-2 gap-3">
+                <!-- Skeleton -->
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 h-48 animate-pulse"></div>
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 h-48 animate-pulse"></div>
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 h-48 animate-pulse"></div>
+                <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 h-48 animate-pulse"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full max-w-md pb-safe z-50 shadow-up">
+        <div class="flex justify-around items-center h-16">
+            <a href="index.html"
+                class="nav-item flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-home text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="explore.html"
+                class="nav-item active flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-compass text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Explore</span>
+            </a>
+            <div class="relative w-full flex justify-center h-full items-end pb-3">
+                <a href="cart.html"
+                    class="absolute -top-6 bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-transform active:scale-95 border-4 border-gray-100">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="nav-cart-count"
+                        class="absolute top-3 right-3 bg-red-500 border border-white w-3 h-3 rounded-full hidden"></span>
+                </a>
+                <span class="text-[10px] font-medium text-gray-400 mt-8">Cart</span>
+            </div>
+            <a href="orders.html"
+                class="nav-item flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-box text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Orders</span>
+            </a>
+            <a href="profile.html"
+                class="nav-item flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-user text-xl mb-0.5 transition-transform"></i>
+                <span class="text-[10px] font-medium">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <script type="module" src="assets/js/explore-main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>
