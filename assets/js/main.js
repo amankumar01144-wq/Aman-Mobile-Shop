@@ -67,4 +67,39 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(checkBroadcasts, 2000); // 2s delay so it doesn't clash with other load toasts
 });
 
+// PWA Install Logic
+let deferredPrompt;
+const installContainer = document.getElementById('install-app-container');
+const installBtn = document.getElementById('install-app-btn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent internal logic from running immediately
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Show the install button if it exists (on profile page)
+    if (installContainer) {
+        installContainer.classList.remove('hidden');
+    }
+});
+
+if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response to install prompt: ${outcome}`);
+            deferredPrompt = null;
+            if (outcome === 'accepted') {
+                if (installContainer) installContainer.classList.add('hidden');
+            }
+        }
+    });
+}
+
+window.addEventListener('appinstalled', () => {
+    console.log('PWA was installed');
+    if (installContainer) installContainer.classList.add('hidden');
+});
+
 // Note: Auth link logic is now handled in profile.html specifically for the App structure
