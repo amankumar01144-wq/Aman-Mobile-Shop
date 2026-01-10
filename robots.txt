@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /checkout.html
 
-Sitemap: https://aman-mobile-shop.web.app/sitemap.xml
+Sitemap: https://amankumar01144-wq.github.io/Aman-Mobile-Shop/sitemap.xml
