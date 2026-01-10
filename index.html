@@ -11,6 +11,7 @@
     <meta name="keywords"
         content="mobile shop, smartphone repair, buy mobiles, phone accessories, aman mobile shop, electronics, gadgets">
     <meta name="author" content="Aman Mobile Shop">
+    <meta name="google-site-verification" content="u2fGnPCJD8eoFMrWSJ5dHgotH8W7VUEFXbpydLAk4Cw" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -18,15 +19,17 @@
     <meta property="og:title" content="Aman Mobile Shop - Best Gadgets & Repairs">
     <meta property="og:description"
         content="Shop the latest mobile phones, accessories, and get expert repair services. Best prices and quality guaranteed.">
-    <meta property="og:image" content="assets/icons/icon-512.png">
+    <meta property="og:image" content="assets/icons/icon-512.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Aman Mobile Shop - Best Gadgets & Repairs">
     <meta property="twitter:description"
         content="Shop the latest mobile phones, accessories, and get expert repair services.">
-    <meta property="twitter:image" content="assets/icons/icon-512.png">
+    <meta property="twitter:image" content="assets/icons/icon-512.jpg">
     <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/jpeg" href="assets/icons/icon-192.jpg">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.jpg">
     <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -48,10 +51,57 @@
     </script>
 </head>
 
-<body class="bg-gray-100 h-screen flex flex-col overflow-hidden w-full max-w-md mx-auto relative shadow-2xl">
+<body
+    class="bg-gray-50 h-screen flex flex-col overflow-hidden w-full md:max-w-full max-w-md mx-auto relative shadow-2xl md:shadow-none text-gray-800">
+
+    <!-- DESKTOP HEADER (Hidden on Mobile) -->
+    <header
+        class="hidden md:flex bg-white px-8 py-4 items-center justify-between border-b border-gray-100 sticky top-0 z-50">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="location.href='index.html'">
+            <div
+                class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-blue-200 shadow-lg">
+                S</div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Aman Mobile</h1>
+            </div>
+        </div>
+
+        <div class="flex-1 max-w-2xl mx-12 relative">
+            <input type="text" id="desktop-search-input" placeholder="Search for products, brands and more..."
+                class="w-full bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white rounded-xl py-3 pl-12 pr-4 transition-all focus:ring-4 focus:ring-blue-500/10 outline-none">
+            <i class="fas fa-search absolute left-4 top-3.5 text-gray-400 text-lg"></i>
+        </div>
+
+        <div class="flex items-center gap-8">
+            <a href="index.html" class="flex flex-col items-center gap-1 text-blue-600 font-medium">
+                <div class="relative"><i class="fas fa-home text-xl"></i></div>
+                <span class="text-xs font-semibold">Home</span>
+            </a>
+            <a href="explore.html"
+                class="flex flex-col items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors font-medium">
+                <div class="relative"><i class="fas fa-compass text-xl"></i></div>
+                <span class="text-xs font-semibold">Explore</span>
+            </a>
+            <a href="cart.html"
+                class="flex flex-col items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors font-medium group">
+                <div class="relative">
+                    <i class="fas fa-shopping-cart text-xl group-hover:scale-110 transition-transform"></i>
+                    <span
+                        class="desktop-cart-count absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full hidden border border-white">0</span>
+                </div>
+                <span class="text-xs font-semibold">Cart</span>
+            </a>
+            <a href="profile.html"
+                class="flex flex-col items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors font-medium">
+                <div class="relative"><i class="fas fa-user text-xl"></i></div>
+                <span class="text-xs font-semibold">Profile</span>
+            </a>
+        </div>
+    </header>
 
     <!-- TOP BAR (Fixed) -->
-    <header class="bg-white px-4 pt-safe pb-2 flex items-center justify-between sticky top-0 z-50 shadow-sm shrink-0">
+    <header
+        class="bg-white px-4 pt-safe pb-2 flex items-center justify-between sticky top-0 z-50 shadow-sm shrink-0 md:hidden">
         <div class="flex items-center gap-2">
             <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">S
             </div>
@@ -77,10 +127,11 @@
     </header>
 
     <!-- MAIN SCROLLABLE AREA -->
-    <main class="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20 relative bg-gray-50">
+    <main
+        class="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20 md:pb-8 relative bg-gray-50 md:w-full md:max-w-[1400px] md:mx-auto">
 
         <!-- Search Bar (Sticky-ish) -->
-        <div class="px-4 py-3 bg-white sticky top-0 z-40 shadow-[0_2px_4px_-2px_rgba(0,0,0,0.05)]">
+        <div class="px-4 py-3 bg-white sticky top-0 z-40 shadow-[0_2px_4px_-2px_rgba(0,0,0,0.05)] md:hidden">
             <div class="relative">
                 <input type="text" id="search-input" placeholder="Search products, brands..."
                     class="w-full bg-gray-100 text-gray-800 border-none rounded-xl py-3 pl-11 pr-4 text-sm focus:ring-2 focus:ring-blue-100 transition-all shadow-inner">
@@ -146,7 +197,7 @@
         <!-- Banner Carousel -->
         <section class="mt-4 px-4 relative">
             <div id="home-banner-container"
-                class="w-full h-40 rounded-2xl shadow-lg relative overflow-hidden bg-gray-200">
+                class="w-full h-40 md:h-[400px] rounded-2xl shadow-lg relative overflow-hidden bg-gray-200">
                 <!-- Fallback Loading State -->
                 <div class="absolute inset-0 flex items-center justify-center text-gray-400">
                     <i class="fas fa-image text-2xl"></i>
@@ -166,7 +217,7 @@
         </div>
 
         <!-- Product Grid (Vertical App Style) -->
-        <div id="product-grid" class="px-4 mt-4 grid grid-cols-2 gap-3 pb-4">
+        <div id="product-grid" class="px-4 mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6 pb-4">
             <!-- Skeleton Loader -->
             <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100">
                 <div class="skeleton h-32 w-full rounded-xl mb-3"></div>
@@ -183,7 +234,7 @@
     </main>
 
     <!-- BOTTOM NAVIGATION (Fixed) -->
-    <nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full max-w-md pb-safe z-50 shadow-up">
+    <nav class="bg-white border-t border-gray-100 fixed bottom-0 w-full max-w-md pb-safe z-50 shadow-up md:hidden">
         <div class="flex justify-around items-center h-16">
             <a href="index.html"
                 class="nav-item active flex flex-col items-center gap-1 w-full h-full justify-center text-gray-400 hover:text-blue-600 transition-colors">
@@ -216,6 +267,24 @@
             </a>
         </div>
     </nav>
+
+    <!-- PWA Install Bottom Sheet (Hidden by default) -->
+    <div id="pwa-install-sheet"
+        class="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl shadow-[0_-5px_20px_rgba(0,0,0,0.15)] p-6 z-[60] transform translate-y-full transition-transform duration-500 flex flex-col items-center text-center md:hidden">
+        <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6"></div>
+        <img src="assets/icons/icon-512.jpg" class="w-20 h-20 rounded-2xl shadow-xl shadow-blue-100 mb-4">
+        <h3 class="font-bold text-xl text-gray-900 mb-2">Install App</h3>
+        <p class="text-sm text-gray-500 mb-8 px-6 leading-relaxed">Faster access, better performance, and exclusive
+            app-only offers.</p>
+        <div class="flex gap-4 w-full">
+            <button onclick="toggleInstallSheet(false)"
+                class="flex-1 py-3.5 text-gray-600 font-bold text-sm bg-gray-100 rounded-2xl active:scale-95 transition-transform">Maybe
+                Later</button>
+            <button id="pwa-install-trigger"
+                class="flex-1 py-3.5 text-white font-bold text-sm bg-blue-600 rounded-2xl shadow-lg shadow-blue-200 active:scale-95 transition-transform">Install
+                Now</button>
+        </div>
+    </div>
 
     <script type="module" src="assets/js/index-main.js"></script>
     <script type="module" src="assets/js/main.js"></script>

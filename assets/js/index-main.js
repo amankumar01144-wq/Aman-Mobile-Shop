@@ -145,6 +145,11 @@ if (searchInput) {
     searchInput.addEventListener('input', handleSearch);
 }
 
+const desktopSearch = document.getElementById('desktop-search-input');
+if (desktopSearch) {
+    desktopSearch.addEventListener('input', handleSearch);
+}
+
 if (searchInput) {
     searchInput.addEventListener('input', handleSearch);
 }

@@ -88,6 +88,15 @@ searchInput.addEventListener('input', (e) => {
     renderProducts(filtered);
 });
 
+const desktopSearch = document.getElementById('desktop-search-input');
+if (desktopSearch) {
+    desktopSearch.addEventListener('input', (e) => {
+        // Trigger same logic
+        searchInput.value = e.target.value; // Sync with mobile input if needed, or just run logic
+        searchInput.dispatchEvent(new Event('input'));
+    });
+}
+
 window.toggleWishExplore = (id, btn) => {
     const added = toggleWishlist(id);
     const icon = btn.querySelector('i');

@@ -107,6 +107,8 @@ const renderProductDetails = (product) => {
                     </div>
                 </div>
                 <!-- Mock Review -->
+                <!-- Mock Review -->
+                <!-- Mock Review -->
                  <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                     <div class="flex gap-2 mb-2">
                         <div class="w-6 h-6 bg-gray-300 rounded-full"></div>
@@ -115,8 +117,34 @@ const renderProductDetails = (product) => {
                     <p class="text-xs text-gray-600">"This product is really amazing. Loved the quality!"</p>
                  </div>
              </div>
+
+             <!-- PID: Action Buttons (Desktop Visible) -->
+             <div class="hidden md:flex gap-4 mt-8 pt-6 border-t border-gray-100">
+                <button id="desktop-add-cart-btn" class="flex-1 bg-blue-50 text-blue-600 font-bold py-4 rounded-xl hover:bg-blue-100 transition-colors flex items-center justify-center gap-2">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+                <button id="desktop-buy-now-btn" class="flex-1 bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all active:scale-[0.98]">
+                    Buy Now
+                </button>
+             </div>
         </div>
     `;
+
+    // Attach Desktop Listeners
+    setTimeout(() => {
+        const dAddBtn = document.getElementById('desktop-add-cart-btn');
+        const dBuyBtn = document.getElementById('desktop-buy-now-btn');
+
+        if (dAddBtn) {
+            dAddBtn.addEventListener('click', () => addToCart(product, 1));
+        }
+        if (dBuyBtn) {
+            dBuyBtn.addEventListener('click', () => {
+                addToCart(product, 1);
+                window.location.href = 'cart.html';
+            });
+        }
+    }, 0);
 
     // Global func for image switch
     window.changeImage = (url) => {
@@ -173,5 +201,7 @@ const addToCart = (product, qty) => {
     // Trigger event for navbar badge update
     window.dispatchEvent(new Event('cartUpdated'));
 };
+
+window.addToCart = addToCart; // Make global for inline clicks
 
 loadProduct();

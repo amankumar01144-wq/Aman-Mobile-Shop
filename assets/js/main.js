@@ -69,37 +69,72 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // PWA Install Logic
 let deferredPrompt;
-const installContainer = document.getElementById('install-app-container');
-const installBtn = document.getElementById('install-app-btn');
+const installContainer = document.getElementById('install-app-container'); // Profile page button
+const installBtn = document.getElementById('install-app-btn'); // Profile page trigger
+const installSheet = document.getElementById('pwa-install-sheet'); // Home page sheet
+const homeInstallBtn = document.getElementById('pwa-install-trigger'); // Home page trigger
+
+// Helper to show/hide sheet
+window.toggleInstallSheet = (show) => {
+    if (!installSheet) return;
+    if (show) {
+        installSheet.classList.remove('translate-y-full');
+    } else {
+        installSheet.classList.add('translate-y-full');
+    }
+};
 
 window.addEventListener('beforeinstallprompt', (e) => {
     // Prevent internal logic from running immediately
     e.preventDefault();
     deferredPrompt = e;
 
-    // Show the install button if it exists (on profile page)
+    // 1. Show Profile Button if exists
     if (installContainer) {
         installContainer.classList.remove('hidden');
     }
+
+    // 2. Show Home Sheet after a delay (if on home page)
+    if (installSheet) {
+        // Show automatically when event fires
+        setTimeout(() => {
+            toggleInstallSheet(true);
+        }, 3000);
+    }
 });
 
+// Force check (Optional: If event fired very early)
+// Note: We can't retroactively get the event. But we can ensure UI is ready.
+if (installSheet) {
+    // Debug: If testing, you might want to uncomment this to see UI
+    // setTimeout(() => toggleInstallSheet(true), 3000);
+}
+
+const handleInstallClick = async (promptEvent) => {
+    if (!promptEvent) return;
+    promptEvent.prompt();
+    const { outcome } = await promptEvent.userChoice;
+    console.log(`User response to install prompt: ${outcome}`);
+
+    if (outcome === 'accepted') {
+        deferredPrompt = null;
+        if (installContainer) installContainer.classList.add('hidden');
+        toggleInstallSheet(false);
+    }
+};
+
 if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response to install prompt: ${outcome}`);
-            deferredPrompt = null;
-            if (outcome === 'accepted') {
-                if (installContainer) installContainer.classList.add('hidden');
-            }
-        }
-    });
+    installBtn.addEventListener('click', () => handleInstallClick(deferredPrompt));
+}
+
+if (homeInstallBtn) {
+    homeInstallBtn.addEventListener('click', () => handleInstallClick(deferredPrompt));
 }
 
 window.addEventListener('appinstalled', () => {
     console.log('PWA was installed');
     if (installContainer) installContainer.classList.add('hidden');
+    toggleInstallSheet(false);
 });
 
 // Note: Auth link logic is now handled in profile.html specifically for the App structure

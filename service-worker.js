@@ -1,4 +1,4 @@
-const CACHE_NAME = 'aman-mobile-shop-v2';
+const CACHE_NAME = 'aman-mobile-shop-v3';
 const ASSETS = [
     './',
     './index.html',
@@ -15,6 +15,8 @@ const ASSETS = [
     './assets/js/utils.js',
     './assets/js/main.js',
     './manifest.json',
+    './assets/icons/icon-192.jpg',
+    './assets/icons/icon-512.jpg',
     'https://cdn.tailwindcss.com',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
