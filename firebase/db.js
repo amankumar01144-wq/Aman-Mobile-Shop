@@ -110,14 +110,36 @@ export const getUserOrders = async (userId) => {
 
 // --- Admin ---
 
+// --- ImgBB Helper ---
+const uploadToImgBB = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+        const response = await fetch("https://api.imgbb.com/1/upload?key=5970b8441370346a70b47ae169387dad", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            return data.data.url;
+        } else {
+            throw new Error("ImgBB Upload Failed: " + (data.error ? data.error.message : "Unknown error"));
+        }
+    } catch (error) {
+        console.error("ImgBB Error:", error);
+        throw error;
+    }
+};
+
 export const addProduct = async (productData, imageFile) => {
     try {
         let imageUrl = productData.image || ''; // Use provided URL or default to empty
 
         if (imageFile) {
-            const storageRef = ref(storage, `products/${Date.now()}_${imageFile.name}`);
-            const snapshot = await uploadBytes(storageRef, imageFile);
-            imageUrl = await getDownloadURL(snapshot.ref);
+            // Use ImgBB instead of Firebase Storage
+            imageUrl = await uploadToImgBB(imageFile);
         }
 
         const docRef = await addDoc(collection(db, "products"), {
@@ -226,11 +248,11 @@ export const updateSettings = async (docId, data) => {
 
 export const uploadBannerImage = async (file) => {
     try {
-        const storageRef = ref(storage, `banners/${Date.now()}_${file.name}`);
-        const snapshot = await uploadBytes(storageRef, file);
-        return await getDownloadURL(snapshot.ref);
+        // Use ImgBB for banners too
+        return await uploadToImgBB(file);
     } catch (error) {
         console.error("Error uploading banner:", error);
+        throw error;
     }
 };
 

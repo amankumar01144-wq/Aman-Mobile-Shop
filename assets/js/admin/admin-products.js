@@ -1,6 +1,6 @@
 import { db } from '../../../firebase/firebase-config.js';
 import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-import { getProducts, addProduct } from '../../../firebase/db.js';
+import { getProducts, addProduct, uploadBannerImage } from '../../../firebase/db.js';
 import { showToast, showLoading, hideLoading, formatCurrency } from '../utils.js';
 
 const productsList = document.getElementById('products-list');
@@ -14,7 +14,9 @@ const pName = document.getElementById('p-name');
 const pPrice = document.getElementById('p-price');
 const pMrp = document.getElementById('p-mrp');
 const pCategory = document.getElementById('p-category');
-const pImage = document.getElementById('p-image');
+const pImage = document.getElementById('p-image'); // Hidden input for existing URL
+const pImageFile = document.getElementById('p-image-file'); // File Input
+const imagePreview = document.getElementById('image-preview');
 const pDesc = document.getElementById('p-desc');
 
 let allProducts = [];
@@ -64,6 +66,8 @@ const renderProducts = (products) => {
 window.openAddModal = () => {
     productForm.reset();
     pId.value = '';
+    pImage.value = ''; // Reset hidden URL
+    imagePreview.classList.add('hidden');
     modalTitle.textContent = "Add New Product";
     productModal.classList.remove('translate-y-full');
 };
@@ -81,7 +85,17 @@ window.editProduct = (id) => {
     pPrice.value = p.price;
     pMrp.value = p.mrp || '';
     pCategory.value = p.category;
-    pImage.value = p.image || (p.imageUrls && p.imageUrls[0]) || '';
+
+    // Handle Image Preview
+    const imgUrl = p.image || (p.imageUrls && p.imageUrls[0]) || '';
+    pImage.value = imgUrl; // Store existing URL
+    if (imgUrl) {
+        imagePreview.querySelector('img').src = imgUrl;
+        imagePreview.classList.remove('hidden');
+    } else {
+        imagePreview.classList.add('hidden');
+    }
+
     pDesc.value = p.description || '';
 
     modalTitle.textContent = "Edit Product";
@@ -99,34 +113,93 @@ window.deleteProduct = async (id) => {
     }
 };
 
+// File Input Change Listener for Preview
+if (pImageFile) {
+    pImageFile.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.querySelector('img').src = e.target.result;
+                imagePreview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
 productForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const id = pId.value;
-    const data = {
-        name: pName.value,
-        price: Number(pPrice.value),
-        mrp: pMrp.value ? Number(pMrp.value) : null,
-        category: pCategory.value,
-        image: pImage.value,
-        description: pDesc.value,
-        type: pCategory.value === 'Service' ? 'service' : 'product',
-        updatedAt: new Date().toISOString()
-    };
+    const file = pImageFile.files[0];
+
+    const btn = productForm.querySelector('button[type="submit"]');
+    const originalBtnText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+    btn.disabled = true;
 
     try {
+        let imageUrl = pImage.value; // Default to existing
+
+        // Check validation
+        if (!id && !file) {
+            showToast("Please select an image", "error");
+            throw new Error("Image required for new products");
+        }
+
         if (id) {
+            // UDPATE
+            if (file) {
+                // Upload new image if selected
+                try {
+                    // Reuse the generic upload function (which now uses ImgBB)
+                    imageUrl = await uploadBannerImage(file);
+                } catch (uploadAll) {
+                    throw new Error("Image upload failed");
+                }
+            }
+
+            const data = {
+                name: pName.value,
+                price: Number(pPrice.value),
+                mrp: pMrp.value ? Number(pMrp.value) : null,
+                category: pCategory.value,
+                image: imageUrl,
+                description: pDesc.value,
+                type: pCategory.value === 'Service' ? 'service' : 'product',
+                updatedAt: new Date().toISOString()
+            };
+
             await updateDoc(doc(db, "products", id), data);
             showToast("Product updated");
+
         } else {
-            data.createdAt = new Date().toISOString();
-            await addDoc(collection(db, "products"), data);
+            // CREATE
+            // addProduct in db.js handles the upload logic internally
+            const data = {
+                name: pName.value,
+                price: Number(pPrice.value),
+                mrp: pMrp.value ? Number(pMrp.value) : null,
+                category: pCategory.value,
+                // Image will be handled by addProduct
+                description: pDesc.value,
+                type: pCategory.value === 'Service' ? 'service' : 'product'
+            };
+
+            await addProduct(data, file);
             showToast("Product added");
         }
+
         closeModal();
         loadProducts();
     } catch (error) {
         console.error(error);
-        showToast(error.message, "error");
+        if (error.message !== "Image required for new products") {
+            showToast(error.message || "Failed to save", "error");
+        }
+    } finally {
+        btn.innerHTML = originalBtnText;
+        btn.disabled = false;
     }
 });
 
