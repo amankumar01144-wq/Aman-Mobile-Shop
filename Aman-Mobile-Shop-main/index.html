@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Aman Mobile Shop - Best Gadgets & Repairs</title>
+    <meta name="description"
+        content="Welcome to Aman Mobile Shop. Shop the latest mobile phones, accessories, and get expert repair services. Best prices and quality guaranteed.">
+    <meta name="keywords"
+        content="mobile shop, smartphone repair, buy mobiles, phone accessories, aman mobile shop, electronics, gadgets">
+    <meta name="author" content="Aman Mobile Shop">
+    <meta name="google-site-verification" content="u2fGnPCJD8eoFMrWSJ5dHgotH8W7VUEFXbpydLAk4Cw" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amankumar01144-wq.github.io/Aman-Mobile-Shop/">
+    <meta property="og:title" content="Aman Mobile Shop - Best Gadgets & Repairs">
+    <meta property="og:description"
+        content="Shop the latest mobile phones, accessories, and get expert repair services. Best prices and quality guaranteed.">
+    <meta property="og:image" content="assets/icons/icon-512.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Aman Mobile Shop - Best Gadgets & Repairs">
+    <meta property="twitter:description"
+        content="Shop the latest mobile phones, accessories, and get expert repair services.">
+    <link rel="icon" type="image/png" href="assets/icons/icon-192-rounded.png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192-rounded.png">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#475569',
+                    },
+                    boxShadow: {
+                        'up': '0 -4px 6px -1px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-gray-50 h-screen flex flex-col overflow-hidden w-full md:max-w-full max-w-md mx-auto relative shadow-2xl md:shadow-none text-gray-800">
+
+    <!-- DESKTOP HEADER (Hidden on Mobile) -->
+    <header
+        class="hidden md:flex bg-white px-8 py-4 items-center justify-between border-b border-gray-100 sticky top-0 z-50">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="location.href='index.html'">
+            <div
+                class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-blue-200 shadow-lg">
+                S</div>
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Aman Mobile</h1>
+            </div>
+        </div>
+
+        <div class="flex-1 max-w-2xl mx-12 relative">
+            <input type="text" id="desktop-search-input" placeholder="Search for products, brands and more..."
+                class="w-full bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white rounded-full py-3 pl-12 pr-4 transition-all focus:ring-4 focus:ring-blue-500/10 outline-none">
+            <i class="fas fa-search absolute left-4 top-3.5 text-gray-400 text-lg"></i>
+        </div>
+
+        <div class="flex items-center gap-8">
+            <a href="index.html" class="flex flex-col items-center gap-1 text-blue-600 font-medium">
+                <div class="relative"><i class="fas fa-home text-xl"></i></div>
+                <span class="text-xs font-semibold">Home</span>
+            </a>
+            <a href="explore.html"
+                class="flex flex-col items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors font-medium">
+                <div class="relative"><i class="fas fa-compass text-xl"></i></div>
+                <span class="text-xs font-semibold">Explore</span>
+            </a>
+            <a href="cart.html"
+                class="flex flex-col items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors font-medium group">
+                <div class="relative">
+                    <i class="fas fa-shopping-cart text-xl group-hover:scale-110 transition-transform"></i>
+                    <span
+                        class="desktop-cart-count absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full hidden border border-white">0</span>
+                </div>
+                <span class="text-xs font-semibold">Cart</span>
+            </a>
+            <a href="profile.html"
+                class="flex flex-col items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors font-medium">
+                <div class="relative"><i class="fas fa-user text-xl"></i></div>
+                <span class="text-xs font-semibold">Profile</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- REDESIGNED TOP BAR (Quick Commerce Style) -->
+    <header class="bg-[#0070bc] px-4 pt-safe pb-0 sticky top-0 z-50 md:hidden transition-all duration-300">
+        <!-- Segmented Control (Shop / Repair) -->
+        <div id="segmented-control" class="flex bg-white/20 p-1 rounded-full mb-3 max-w-[280px] mx-auto transition-all duration-300">
+            <button id="toggle-shop" onclick="switchMode('shop')"
+                class="flex-1 py-1.5 rounded-full bg-[#f7941d] text-white font-bold text-xs transition-all shadow-sm">
+                Shop
+            </button>
+            <button id="toggle-repair" onclick="switchMode('repair')"
+                class="flex-1 py-1.5 rounded-full text-white font-bold text-xs transition-all">
+                Repair
+            </button>
+        </div>
+
+        <!-- Location Bar -->
+        <div id="location-bar" class="flex items-center gap-3 text-white mb-3 transition-all duration-300">
+            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <i class="fas fa-bolt text-[#f7941d] text-sm animate-pulse"></i>
+            </div>
+            <div class="flex-1 overflow-hidden">
+                <div class="flex items-center gap-1">
+                    <h2 class="text-xs font-black tracking-tight uppercase">Home</h2>
+                    <i class="fas fa-chevron-down text-[8px] opacity-70"></i>
+                </div>
+                <p class="text-[10px] opacity-90 truncate font-medium">Singhpura Road 4 number gali, Hisar bypass, RO...
+                </p>
+            </div>
+        </div>
+
+        <!-- Premium Search Bar + Profile -->
+        <div class="flex items-center gap-3 mb-4">
+            <div class="relative flex-1">
+                <input type="text" id="search-input-new" placeholder="Search for 'Mobiles', 'Services'..."
+                    class="w-full bg-[#fff7ed] text-gray-800 rounded-full py-2.5 pl-11 pr-4 text-sm shadow-lg border-none outline-none focus:ring-2 focus:ring-orange-200 transition-all">
+                <i class="fas fa-search absolute left-4 top-3 text-gray-400"></i>
+            </div>
+            <a href="profile.html"
+                class="w-10 h-10 rounded-full bg-[#f7941d] text-white flex items-center justify-center shrink-0 shadow-lg active:scale-90 transition-all border border-white/20">
+                <i class="fas fa-user text-sm"></i>
+            </a>
+        </div>
+
+        <!-- Quick Categories -->
+        <div id="quick-categories" class="flex gap-5 overflow-x-auto scrollbar-hide px-2 transition-all duration-300">
+            <!-- All -->
+            <button onclick="filterCategory('all')" class="flex flex-col items-center gap-0.5 pb-1 min-w-[45px] snap-start group relative category-btn active" data-category="all">
+                <i class="fas fa-grid-2 text-sm text-white group-[.active]:text-[#f7941d] transition-colors"></i>
+                <span class="text-[8px] font-black text-white/70 group-[.active]:text-[#f7941d] uppercase tracking-tighter">All</span>
+                <div class="absolute bottom-0 left-1.5 right-1.5 h-0.5 bg-[#f7941d] rounded-full opacity-0 group-[.active]:opacity-100 transition-all scale-x-0 group-[.active]:scale-x-100"></div>
+            </button>
+            <!-- Mobiles -->
+            <button onclick="filterCategory('electronics')" class="flex flex-col items-center gap-0.5 pb-1 min-w-[45px] snap-start group relative category-btn" data-category="electronics">
+                <i class="fas fa-mobile-screen text-sm text-white group-[.active]:text-[#f7941d] transition-colors"></i>
+                <span class="text-[8px] font-black text-white/70 group-[.active]:text-[#f7941d] uppercase tracking-tighter">Mobiles</span>
+                <div class="absolute bottom-0 left-1.5 right-1.5 h-0.5 bg-[#f7941d] rounded-full opacity-0 group-[.active]:opacity-100 transition-all scale-x-0 group-[.active]:scale-x-100"></div>
+            </button>
+            <!-- Add-ons -->
+            <button onclick="filterCategory('accessories')" class="flex flex-col items-center gap-0.5 pb-1 min-w-[45px] snap-start group relative category-btn" data-category="accessories">
+                <i class="fas fa-headphones text-sm text-white group-[.active]:text-[#f7941d] transition-colors"></i>
+                <span class="text-[8px] font-black text-white/70 group-[.active]:text-[#f7941d] uppercase tracking-tighter">Add-ons</span>
+                <div class="absolute bottom-0 left-1.5 right-1.5 h-0.5 bg-[#f7941d] rounded-full opacity-0 group-[.active]:opacity-100 transition-all scale-x-0 group-[.active]:scale-x-100"></div>
+            </button>
+            <!-- Repairs -->
+            <button onclick="switchMode('repair')" class="flex flex-col items-center gap-0.5 pb-1 min-w-[45px] snap-start group relative category-btn" data-category="services">
+                <i class="fas fa-screwdriver-wrench text-sm text-white group-[.active]:text-[#f7941d] transition-colors"></i>
+                <span class="text-[8px] font-black text-white/70 group-[.active]:text-[#f7941d] uppercase tracking-tighter">Repairs</span>
+                <div class="absolute bottom-0 left-1.5 right-1.5 h-0.5 bg-[#f7941d] rounded-full opacity-0 group-[.active]:opacity-100 transition-all scale-x-0 group-[.active]:scale-x-100"></div>
+            </button>
+            <!-- Explore -->
+            <button onclick="location.href='explore.html'" class="flex flex-col items-center gap-0.5 pb-1 min-w-[45px] snap-start group relative">
+                <i class="fas fa-compass text-sm text-white hover:text-[#f7941d] transition-colors"></i>
+                <span class="text-[8px] font-black text-white/70 uppercase tracking-tighter">Explore</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN SCROLLABLE AREA -->
+    <main
+        class="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-20 md:pb-8 relative bg-gray-50 md:w-full md:max-w-[1400px] md:mx-auto">
+
+
+        <!-- Banner Carousel -->
+        <!-- Banner Carousel -->
+        <section class="mt-4 px-4 relative">
+            <div id="home-banner-container"
+                class="w-full h-40 md:h-[400px] rounded-2xl shadow-lg relative overflow-hidden bg-gray-200">
+                <!-- Fallback Loading State -->
+                <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                    <i class="fas fa-image text-2xl"></i>
+                </div>
+            </div>
+            <!-- Indicators -->
+            <div id="banner-indicators" class="absolute bottom-2 left-0 w-full flex justify-center gap-1.5 z-10"></div>
+        </section>
+
+        <!-- Deals Header -->
+        <div class="px-4 mt-6 flex justify-between items-end">
+            <div>
+                <h3 class="font-bold text-gray-800 text-lg">Trending Now</h3>
+                <p class="text-xs text-gray-500">Based on your activity</p>
+            </div>
+            <a href="explore.html" class="text-blue-600 text-xs font-bold">See All</a>
+        </div>
+
+        <!-- Product Grid (Vertical App Style) -->
+        <div id="product-grid" class="px-4 mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6 pb-4">
+            <!-- Skeleton Loader -->
+            <div class="bg-white p-3 rounded-[2.5rem] product-card-shadow border border-gray-100 h-80">
+                <div class="skeleton h-44 w-full rounded-[2rem] mb-4"></div>
+                <div class="skeleton h-4 w-3/4 rounded-full mb-3"></div>
+                <div class="skeleton h-4 w-1/2 rounded-full mb-6"></div>
+                <div class="flex gap-2">
+                    <div class="skeleton h-10 flex-1 rounded-2xl"></div>
+                    <div class="skeleton h-10 w-10 rounded-2xl"></div>
+                </div>
+            </div>
+            <div class="bg-white p-3 rounded-[2.5rem] product-card-shadow border border-gray-100 h-80">
+                <div class="skeleton h-44 w-full rounded-[2rem] mb-4"></div>
+                <div class="skeleton h-4 w-3/4 rounded-full mb-3"></div>
+                <div class="skeleton h-4 w-1/2 rounded-full mb-6"></div>
+                <div class="flex gap-2">
+                    <div class="skeleton h-10 flex-1 rounded-2xl"></div>
+                    <div class="skeleton h-10 w-10 rounded-2xl"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- PREMIUM FLOATING CART (MATCHING SCREENSHOT) -->
+    <div id="floating-cart"
+        class="fixed bottom-[65px] left-0 right-0 mx-auto max-w-md px-4 pb-safe z-50 transform translate-y-full transition-transform duration-500 md:hidden">
+        <div
+            class="bg-white rounded-2xl shadow-[0_-10px_30px_rgba(0,0,0,0.15)] border border-gray-100 p-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-11 h-11 bg-gray-50 rounded-xl flex items-center justify-center overflow-hidden border border-gray-100 shadow-inner">
+                    <img id="floating-cart-img" src="assets/icons/icon-192-rounded.png"
+                        class="w-full h-full object-contain p-1">
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <p id="floating-cart-text" class="text-sm font-black text-gray-900 leading-none">1 item</p>
+                    </div>
+                    <p id="floating-cart-savings" class="text-[10px] text-green-600 font-bold mt-1">You save ₹0</p>
+                </div>
+            </div>
+            <button onclick="location.href='cart.html'"
+                class="bg-[#0070bc] text-white px-8 py-3 rounded-xl font-black text-sm active:scale-95 transition-all shadow-lg shadow-blue-100 flex items-center gap-2">
+                View Cart <i class="fas fa-chevron-right text-[10px]"></i>
+            </button>
+        </div>
+    </div>
+
+    <nav
+        class="bg-white border-t border-gray-100 fixed bottom-0 left-0 right-0 mx-auto w-full max-w-md pb-safe z-[60] shadow-up md:hidden">
+        <div class="flex justify-around items-center h-14">
+            <a href="index.html"
+                class="nav-item active flex flex-col items-center gap-0.5 w-full h-full justify-center text-gray-400 hover:text-[#0070bc] [&.active]:text-[#0070bc] transition-colors">
+                <i class="fas fa-home text-lg transition-transform"></i>
+                <span class="text-[9px] font-medium">Home</span>
+            </a>
+            <a href="explore.html"
+                class="nav-item flex flex-col items-center gap-0.5 w-full h-full justify-center text-gray-400 hover:text-[#0070bc] [&.active]:text-[#0070bc] transition-colors">
+                <i class="fas fa-compass text-lg transition-transform"></i>
+                <span class="text-[9px] font-medium">Explore</span>
+            </a>
+            <div class="relative w-full flex justify-center h-full items-end pb-2">
+                <a href="cart.html"
+                    class="absolute -top-5 bg-[#0070bc] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-transform active:scale-95 border-4 border-gray-100">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span id="nav-cart-count"
+                        class="absolute top-0 right-0 bg-red-500 border border-white min-w-[1rem] h-[1rem] flex items-center justify-center text-[9px] font-bold rounded-full hidden px-1 translate-x-1 -translate-y-1 shadow-sm"></span>
+                </a>
+                <span class="text-[9px] font-medium text-gray-400 mt-7">Cart</span>
+            </div>
+            <a href="orders.html"
+                class="nav-item flex flex-col items-center gap-0.5 w-full h-full justify-center text-gray-400 hover:text-[#0070bc] [&.active]:text-[#0070bc] transition-colors">
+                <i class="fas fa-box text-lg transition-transform"></i>
+                <span class="text-[9px] font-medium">Orders</span>
+            </a>
+            <a href="profile.html"
+                class="nav-item flex flex-col items-center gap-0.5 w-full h-full justify-center text-gray-400 hover:text-[#0070bc] [&.active]:text-[#0070bc] transition-colors">
+                <i class="fas fa-user text-lg transition-transform"></i>
+                <span class="text-[9px] font-medium">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- PWA Install Bottom Sheet (Hidden by default) -->
+    <div id="pwa-install-sheet"
+        class="fixed bottom-0 left-0 w-full bg-white rounded-t-3xl shadow-[0_-5px_20px_rgba(0,0,0,0.15)] p-6 z-[60] transform translate-y-full transition-transform duration-500 flex flex-col items-center text-center md:hidden">
+        <div class="w-12 h-1.5 bg-gray-200 rounded-full mb-6"></div>
+        <div class="w-24 h-24 bg-white rounded-2xl shadow-xl shadow-blue-100 mb-4 p-3 flex items-center justify-center">
+            <img src="assets/icons/icon-512-rounded.png" class="w-full h-full object-contain">
+        </div>
+        <h3 class="font-bold text-xl text-gray-900 mb-2">Install App</h3>
+        <p class="text-sm text-gray-500 mb-8 px-6 leading-relaxed">Faster access, better performance, and exclusive
+            app-only offers.</p>
+        <div class="flex gap-4 w-full">
+            <button onclick="toggleInstallSheet(false)"
+                class="flex-1 py-3.5 text-gray-600 font-bold text-sm bg-gray-100 rounded-2xl active:scale-95 transition-transform">Maybe
+                Later</button>
+            <button id="pwa-install-trigger"
+                class="flex-1 py-3.5 text-white font-bold text-sm bg-blue-600 rounded-2xl shadow-lg shadow-blue-200 active:scale-95 transition-transform">Install
+                Now</button>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/index-main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed: ', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
