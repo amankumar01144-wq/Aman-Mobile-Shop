@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Admin Login - Aman Mobile Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body
+    class="bg-gray-900 h-screen flex flex-col items-center justify-center p-6 w-full max-w-md mx-auto relative overflow-hidden">
+
+    <div class="z-10 w-full bg-white p-8 rounded-2xl shadow-2xl">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Aman Mobile Shop Admin</h1>
+            <p class="text-gray-500 text-sm mt-1">Authorized Personnel Only</p>
+        </div>
+
+        <form id="admin-login-form" class="space-y-5">
+            <div>
+                <label class="block text-gray-700 text-xs font-bold mb-2 uppercase ml-1">Admin Email</label>
+                <input type="email" id="email" required
+                    class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 px-4 focus:border-gray-900 focus:outline-none placeholder-gray-400 text-gray-900">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 text-xs font-bold mb-2 uppercase ml-1">Password</label>
+                <input type="password" id="password" required
+                    class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 px-4 focus:border-gray-900 focus:outline-none placeholder-gray-400 text-gray-900">
+            </div>
+
+            <button type="submit" id="login-btn"
+                class="w-full bg-gray-900 text-white font-bold py-3.5 rounded-xl active:scale-95 transition-transform shadow-lg">
+                Enter Dashboard
+            </button>
+        </form>
+    </div>
+
+    <script type="module" src="../assets/js/admin/admin-login.js"></script>
+</body>
+
+</html>
